@@ -1,6 +1,5 @@
-package com.example.cleanarch.app.domain.factories;
+package com.example.cleanarch.app.domain.entities;
 
-import com.example.cleanarch.app.domain.entities.Animal;
 
 import java.time.LocalDate;
 

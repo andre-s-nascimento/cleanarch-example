@@ -5,6 +5,9 @@ import com.example.cleanarch.app.domain.exceptions.InvalidAnimalAtributteExcepti
 import java.time.LocalDate;
 import java.util.Objects;
 
+/*
+ * this class will be created using the factory AnimalFactory
+ */
 public class CommonAnimal implements Animal{
 
     private String name;
@@ -17,7 +20,7 @@ public class CommonAnimal implements Animal{
 
     }
 
-    public CommonAnimal(String name, LocalDate birthDate, String breed, String color, String kind) throws Exception {
+    protected CommonAnimal(String name, LocalDate birthDate, String breed, String color, String kind) throws Exception {
         validate(name, birthDate, breed, color, kind);
         this.name = name;
         this.birthDate = birthDate;
@@ -66,6 +69,24 @@ public class CommonAnimal implements Animal{
         return LocalDate.now().getYear() - this.birthDate.getYear();
     }
 
+    private void validate(String name, LocalDate birthDate, String breed, String color, String kind) throws InvalidAnimalAtributteException {
+        validateBirthDate(birthDate);
+        validateStringFields(name);
+        validateStringFields(breed);
+        validateStringFields(color);
+        validateStringFields(kind);
+    }
+
+    private void validateBirthDate(LocalDate birthDate) throws InvalidAnimalAtributteException {
+        if (birthDate.isAfter(LocalDate.now()))
+            throw new InvalidAnimalAtributteException("birthDate cannot be after now");
+    }
+
+    private void validateStringFields(String attribute) throws InvalidAnimalAtributteException {
+        if (attribute == null || attribute.isEmpty() || attribute.isBlank())
+            throw new InvalidAnimalAtributteException("invalid, null or blank attribute");
+    }
+
     @Override
     public String toString() {
         return "CommonAnimal{" +
@@ -88,24 +109,6 @@ public class CommonAnimal implements Animal{
     @Override
     public int hashCode() {
         return Objects.hash(name, birthDate, breed, color, kind);
-    }
-
-    private void validate(String name, LocalDate birthDate, String breed, String color, String kind) throws InvalidAnimalAtributteException {
-        validateBirthDate(birthDate);
-        validateStringFields(name);
-        validateStringFields(breed);
-        validateStringFields(color);
-        validateStringFields(kind);
-    }
-
-    private void validateBirthDate(LocalDate birthDate) throws InvalidAnimalAtributteException {
-        if (birthDate.isAfter(LocalDate.now()))
-            throw new InvalidAnimalAtributteException("birthDate cannot be after now");
-    }
-
-    private void validateStringFields(String attribute) throws InvalidAnimalAtributteException {
-        if (attribute == null || attribute.isEmpty() || attribute.isBlank())
-            throw new InvalidAnimalAtributteException("invalid, null or blank attribute");
     }
 
 }
