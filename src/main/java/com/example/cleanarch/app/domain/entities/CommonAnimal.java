@@ -1,5 +1,6 @@
 package com.example.cleanarch.app.domain.entities;
 
+import com.example.cleanarch.app.domain.exceptions.InvalidAnimalAtributteException;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -12,10 +13,13 @@ public class CommonAnimal implements Animal{
     private String color;
     private String kind;
 
+    private CommonAnimal(){
+
+    }
+
     public CommonAnimal(String name, LocalDate birthDate, String breed, String color, String kind) throws Exception {
+        validate(name, birthDate, breed, color, kind);
         this.name = name;
-        if(birthDate.isAfter(LocalDate.now()))
-            throw new Exception("birthDate cannot be after now");
         this.birthDate = birthDate;
         this.breed = breed;
         this.color = color;
@@ -26,7 +30,8 @@ public class CommonAnimal implements Animal{
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws InvalidAnimalAtributteException {
+        validateStringFields(name);
         this.name = name;
     }
 
@@ -35,8 +40,7 @@ public class CommonAnimal implements Animal{
     }
 
     public void setBirthDate(LocalDate birthDate) throws Exception {
-        if(birthDate.isAfter(LocalDate.now()))
-            throw new Exception("birthDate cannot be after now");
+        validateBirthDate(birthDate);
         this.birthDate = birthDate;
     }
 
@@ -44,7 +48,8 @@ public class CommonAnimal implements Animal{
         return breed;
     }
 
-    public void setBreed(String breed) {
+    public void setBreed(String breed) throws InvalidAnimalAtributteException {
+        validateStringFields(breed);
         this.breed = breed;
     }
 
@@ -52,7 +57,8 @@ public class CommonAnimal implements Animal{
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(String color) throws InvalidAnimalAtributteException {
+        validateStringFields(color);
         this.color = color;
     }
 
@@ -82,6 +88,24 @@ public class CommonAnimal implements Animal{
     @Override
     public int hashCode() {
         return Objects.hash(name, birthDate, breed, color, kind);
+    }
+
+    private void validate(String name, LocalDate birthDate, String breed, String color, String kind) throws InvalidAnimalAtributteException {
+        validateBirthDate(birthDate);
+        validateStringFields(name);
+        validateStringFields(breed);
+        validateStringFields(color);
+        validateStringFields(kind);
+    }
+
+    private void validateBirthDate(LocalDate birthDate) throws InvalidAnimalAtributteException {
+        if (birthDate.isAfter(LocalDate.now()))
+            throw new InvalidAnimalAtributteException("birthDate cannot be after now");
+    }
+
+    private void validateStringFields(String attribute) throws InvalidAnimalAtributteException {
+        if (attribute == null || attribute.isEmpty() || attribute.isBlank())
+            throw new InvalidAnimalAtributteException("invalid, null or blank attribute");
     }
 
 }
