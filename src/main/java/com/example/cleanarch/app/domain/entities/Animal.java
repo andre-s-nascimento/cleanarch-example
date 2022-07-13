@@ -9,5 +9,6 @@ public interface Animal {
     String getBreed();
     String getColor();
     Integer getAge();
+    String getKind();
 
 }

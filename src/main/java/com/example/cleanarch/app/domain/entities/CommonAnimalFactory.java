@@ -1,7 +1,10 @@
 package com.example.cleanarch.app.domain.entities;
 
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDate;
 
+@Component
 public class CommonAnimalFactory implements AnimalFactory {
 
     @Override

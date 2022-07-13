@@ -4,5 +4,5 @@ import com.example.cleanarch.app.adapters.controllers.response.AnimalResponseMod
 
 public interface AnimalPresenter {
     AnimalResponseModel prepareSuccessView(AnimalResponseModel animalResponseModel);
-    AnimalResponseModel prepareFailView(AnimalResponseModel animalResponseModel);
+    AnimalResponseModel prepareFailView(String error);
 }

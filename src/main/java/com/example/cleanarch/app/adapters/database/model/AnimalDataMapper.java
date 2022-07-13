@@ -1,21 +1,33 @@
-package com.example.cleanarch.app.adapters.controllers.request;
+package com.example.cleanarch.app.adapters.database.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
-public class AnimalRequestModel {
+@Entity
+@Table(name = "animal")
+public class AnimalDataMapper {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private String name;
+    @Column(name = "birth_date")
     private LocalDate birthDate;
     private String breed;
     private String color;
     private String kind;
 
-    public AnimalRequestModel(String name, LocalDate birthDate, String breed, String color, String kind) {
+    public AnimalDataMapper(String name, LocalDate birthDate, String breed, String color, String kind) {
+        this.id = null;
         this.name = name;
         this.birthDate = birthDate;
         this.breed = breed;
         this.color = color;
         this.kind = kind;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getName() {

@@ -1,8 +1,8 @@
-package com.example.cleanarch.app.adapters.controllers.request;
+package com.example.cleanarch.app.domain.gateway.request;
 
 import java.time.LocalDate;
 
-public class AnimalRequestModel {
+public class AnimalDsRequestModel {
 
     private String name;
     private LocalDate birthDate;
@@ -10,7 +10,7 @@ public class AnimalRequestModel {
     private String color;
     private String kind;
 
-    public AnimalRequestModel(String name, LocalDate birthDate, String breed, String color, String kind) {
+    public AnimalDsRequestModel(String name, LocalDate birthDate, String breed, String color, String kind) {
         this.name = name;
         this.birthDate = birthDate;
         this.breed = breed;
@@ -37,4 +37,5 @@ public class AnimalRequestModel {
     public String getKind() {
         return kind;
     }
+
 }

@@ -1,8 +1,8 @@
 package com.example.cleanarch.app.domain.gateway;
 
-import com.example.cleanarch.app.adapters.database.model.AnimalDsRequestModel;
+import com.example.cleanarch.app.domain.gateway.request.AnimalDsRequestModel;
+import com.example.cleanarch.app.domain.gateway.response.AnimalDsResponseModel;
 
 public interface AnimalRegisterDsGateway {
-    boolean existsByName(String name);
-    void save(AnimalDsRequestModel requestModel);
+    AnimalDsResponseModel save(AnimalDsRequestModel requestModel);
 }

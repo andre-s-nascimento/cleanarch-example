@@ -29,6 +29,7 @@ public class CommonAnimal implements Animal{
         this.kind = kind;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -38,6 +39,7 @@ public class CommonAnimal implements Animal{
         this.name = name;
     }
 
+    @Override
     public LocalDate getBirthDate() {
         return birthDate;
     }
@@ -47,6 +49,7 @@ public class CommonAnimal implements Animal{
         this.birthDate = birthDate;
     }
 
+    @Override
     public String getBreed() {
         return breed;
     }
@@ -56,6 +59,7 @@ public class CommonAnimal implements Animal{
         this.breed = breed;
     }
 
+    @Override
     public String getColor() {
         return color;
     }
@@ -65,8 +69,14 @@ public class CommonAnimal implements Animal{
         this.color = color;
     }
 
+    @Override
     public Integer getAge(){
         return LocalDate.now().getYear() - this.birthDate.getYear();
+    }
+
+    @Override
+    public String getKind() {
+        return kind;
     }
 
     private void validate(String name, LocalDate birthDate, String breed, String color, String kind) throws InvalidAnimalAtributteException {
